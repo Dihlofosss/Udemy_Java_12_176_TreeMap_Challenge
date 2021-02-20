@@ -59,8 +59,8 @@ public class StockList
 
 			double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
 
-			s = s + ". There are " + stockItem.quantityInStock() + " items in stock. Value of items: ";
-			s = s + itemValue + "\n";
+			s = s + stockItem + ". There are " + stockItem.quantityInStock() + " items in stock. Value of items: ";
+			s = s + String.format("%.2f",itemValue) + "\n";
 
 			totalCost += itemValue;
 		}
