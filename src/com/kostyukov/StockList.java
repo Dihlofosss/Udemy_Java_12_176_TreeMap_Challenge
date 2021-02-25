@@ -2,6 +2,7 @@ package com.kostyukov;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class StockList
@@ -10,7 +11,7 @@ public class StockList
 
 	public StockList()
 	{
-		this.list = new HashMap<>();
+		this.list = new LinkedHashMap<>();
 	}
 
 	public int addStock(StockItem item)
