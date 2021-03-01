@@ -5,6 +5,7 @@ public class StockItem implements Comparable<StockItem>
 	private final String name;
 	private double price;
 	private int quantityInStock;
+	private int reserved;
 
 	public StockItem(String name, double price)
 	{
@@ -16,8 +17,35 @@ public class StockItem implements Comparable<StockItem>
 		this.name = name;
 		this.price = price;
 		this.quantityInStock = quantityInStock;
+		this.reserved = 0;
 	}
-
+	
+	public int getReservedInStock()
+	{
+		return reserved;
+	}
+	
+	public void reserveInStock(int amountToReserve)
+	{
+		if (amountToReserve <= 0)
+			return;
+		
+		else if (amountToReserve > quantityInStock())
+			System.out.println("You reserving " + amountToReserve + " items of " + name + ", but only " + (quantityInStock - reserved) + " is available");
+		
+		else
+			reserved += amountToReserve;
+	}
+	
+	public void unreserveInStock(int amountToUnreserve)
+	{
+		if (amountToUnreserve <= 0 || amountToUnreserve > reserved)
+			System.out.println("Invalid unreserving amount");
+		
+		else
+			this.reserved -= amountToUnreserve;
+	}
+	
 	public String getName()
 	{
 		return name;
@@ -30,7 +58,7 @@ public class StockItem implements Comparable<StockItem>
 
 	public int quantityInStock()
 	{
-		return quantityInStock;
+		return quantityInStock - reserved;
 	}
 
 	public void setPrice(double price)
@@ -41,9 +69,9 @@ public class StockItem implements Comparable<StockItem>
 
 	public void adjustQuantityInStock(int quantity)
 	{
-		int newQuantity = this.quantityInStock + quantity;
+		int newQuantity = quantityInStock + quantity;
 		if (newQuantity >= 0 )
-			this.quantityInStock = newQuantity;
+			quantityInStock = newQuantity;
 	}
 
 	@Override
