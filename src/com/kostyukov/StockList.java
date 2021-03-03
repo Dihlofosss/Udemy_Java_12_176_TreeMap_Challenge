@@ -41,7 +41,7 @@ public class StockList
 	{
 		StockItem stockItem = list.get(name);
 		
-		if (stockItem != null && quantity < stockItem.getReservedInStock() && quantity > 0)
+		if (stockItem != null && quantity <= stockItem.getReservedInStock() && quantity > 0)
 			return stockItem.unreserveInStock(quantity);
 		
 		return 0;
