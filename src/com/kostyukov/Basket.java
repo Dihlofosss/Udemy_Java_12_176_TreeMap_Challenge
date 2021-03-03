@@ -24,6 +24,31 @@ public class Basket
 		list.put(item, inBasket + quantity);
 		return inBasket;
 	}
+	
+	public int removeFromBasket(StockItem item, int quantity)
+	{
+		if (item == null || quantity <= 0)
+			return 0;
+		
+		int inBasket = list.getOrDefault(item, 0);
+		int newQuantity = inBasket - quantity;
+		if (newQuantity > 0)
+		{
+			list.put(item, newQuantity);
+			return quantity;
+		}
+		else if (newQuantity == 0)
+		{
+			list.remove(item);
+			return quantity;
+		}
+		return 0;
+	}
+	
+	public void emptyBasket()
+	{
+		this.list.clear();
+	}
 
 	public Map<StockItem, Integer> Items()
 	{
